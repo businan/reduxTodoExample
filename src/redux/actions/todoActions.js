@@ -5,16 +5,16 @@ import {
     CLEAR_TODO_LIST,
 } from "../types/types";
 
-export const addTodo = (payload) => {
+export const addTodo = (text) => {
     return {
         type: ADD_TODO,
-        payload,
+        text,
     };
 };
-export const removeTodo = (id) => {
+export const removeTodo = (payload) => {
     return {
         type: REMOVE_TODO,
-        id,
+        payload,
     };
 };
 export const toggleTodo = (payload) => {

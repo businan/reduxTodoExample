@@ -19,7 +19,7 @@ const todoReducer = (state = INITIAL_STATE, action) => {
                     ...state.list,
                     {
                         id: state.counter + 1,
-                        text: action.payload,
+                        text: action.text,
                         completed: false,
                     },
                 ],
@@ -27,15 +27,22 @@ const todoReducer = (state = INITIAL_STATE, action) => {
         case REMOVE_TODO:
             return {
                 ...state,
-                list: state.list.filter((item) => item.id !== action.id),
+                list: state.list.filter((item) => item.id !== action.payload),
             };
         case TOGGLE_TODO:
             return {
-                
+                ...state,
+                list: state.list.map((item) =>
+                    item.id === action.payload
+                        ? { ...item, completed: !item.completed }
+                        : item,
+                ),
             };
+        case CLEAR_TODO_LIST:
+            return INITIAL_STATE;
 
         default:
-            break;
+            return state;
     }
 };
 
